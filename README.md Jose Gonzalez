@@ -1,0 +1,179 @@
+class Personaje:
+    def __init__(self, nombre, vida, ataque, defensa):
+        self.nombre = nombre
+        self.vida = vida
+        self.ataque = ataque
+        self.defensa = defensa
+
+    def atacar(self, objetivo):
+        damage = self.ataque - objetivo.defensa
+        if damage > 0:
+            objetivo.vida -= damage
+            print(f"{self.nombre} ataca a {objetivo.nombre} y causa {damage} puntos de daño.")
+        else:
+            print(f"{self.nombre} ataca a {objetivo.nombre} pero no causa ningún daño.")
+
+    def mostrar_estado(self):
+        print(f"Nombre: {self.nombre}")
+        print(f"Vida: {self.vida}")
+        print(f"Ataque: {self.ataque}")
+        print(f"Defensa: {self.defensa}")
+
+
+# Ejemplo de uso
+jugador1 = Personaje("Guerrero", 100, 20, 10)
+jugador2 = Personaje("Mago", 80, 25, 5)
+
+jugador1.atacar(jugador2)
+jugador2.mostrar_estado()
+
+
+class Personaje:
+    def __init__(self, nombre, vida, ataque, defensa):
+        self.__nombre = nombre
+        self.__vida = vida
+        self.__ataque = ataque
+        self.__defensa = defensa
+
+    def obtener_nombre(self):
+        return self.__nombre
+
+    def obtener_vida(self):
+        return self.__vida
+
+    def obtener_ataque(self):
+        return self.__ataque
+
+    def obtener_defensa(self):
+        return self.__defensa
+
+    def establecer_vida(self, nueva_vida):
+        self.__vida = nueva_vida
+
+    def atacar(self, objetivo):
+        damage = self.__ataque - objetivo.obtener_defensa()
+        if damage > 0:
+            nueva_vida_objetivo = objetivo.obtener_vida() - damage
+            objetivo.establecer_vida(nueva_vida_objetivo)
+            print(f"{self.__nombre} ataca a {objetivo.obtener_nombre()} y causa {damage} puntos de daño.")
+        else:
+            print(f"{self.__nombre} ataca a {objetivo.obtener_nombre()} pero no causa ningún daño.")
+
+
+# Ejemplo de uso
+jugador1 = Personaje("Guerrero", 100, 20, 10)
+jugador2 = Personaje("Mago", 80, 25, 5)
+
+jugador1.atacar(jugador2)
+print(f"Vida de {jugador2.obtener_nombre()}: {jugador2.obtener_vida()}")
+
+
+class Personaje:
+    def __init__(self, nombre, vida, ataque, defensa):
+        self.nombre = nombre
+        self.vida = vida
+        self.ataque = ataque
+        self.defensa = defensa
+
+    def atacar(self, objetivo):
+        damage = self.ataque - objetivo.defensa
+        if damage > 0:
+            objetivo.vida -= damage
+            print(f"{self.nombre} ataca a {objetivo.nombre} y causa {damage} puntos de daño.")
+        else:
+            print(f"{self.nombre} ataca a {objetivo.nombre} pero no causa ningún daño.")
+
+    def mostrar_estado(self):
+        print(f"Nombre: {self.nombre}")
+        print(f"Vida: {self.vida}")
+        print(f"Ataque: {self.ataque}")
+        print(f"Defensa: {self.defensa}")
+
+
+class Guerrero(Personaje):
+    def __init__(self, nombre, vida, ataque, defensa):
+        super().__init__(nombre, vida, ataque, defensa)
+        self.habilidad_especial = "Corte Mortal"
+
+    def usar_habilidad_especial(self, objetivo):
+        damage = self.ataque * 2 - objetivo.defensa
+        if damage > 0:
+            objetivo.vida -= damage
+            print(f"{self.nombre} usa {self.habilidad_especial} contra {objetivo.nombre} y causa {damage} puntos de daño.")
+        else:
+            print(f"{self.nombre} usa {self.habilidad_especial} contra {objetivo.nombre} pero no causa ningún daño.")
+
+
+# Ejemplo de uso
+guerrero1 = Guerrero("Conan", 150, 30, 15)
+guerrero2 = Guerrero("Valeria", 140, 35, 10)
+
+guerrero1.atacar(guerrero2)
+guerrero2.mostrar_estado()
+
+guerrero1.usar_habilidad_especial(guerrero2)
+guerrero2.mostrar_estado()
+
+
+class Personaje:
+    def __init__(self, nombre, vida, ataque, defensa):
+        self.nombre = nombre
+        self.vida = vida
+        self.ataque = ataque
+        self.defensa = defensa
+
+    def atacar(self, objetivo):
+        damage = self.ataque - objetivo.defensa
+        if damage > 0:
+            objetivo.vida -= damage
+            print(f"{self.nombre} ataca a {objetivo.nombre} y causa {damage} puntos de daño.")
+        else:
+            print(f"{self.nombre} ataca a {objetivo.nombre} pero no causa ningún daño.")
+
+    def mostrar_estado(self):
+        print(f"Nombre: {self.nombre}")
+        print(f"Vida: {self.vida}")
+        print(f"Ataque: {self.ataque}")
+        print(f"Defensa: {self.defensa}")
+
+
+class Guerrero(Personaje):
+    def __init__(self, nombre, vida, ataque, defensa):
+        super().__init__(nombre, vida, ataque, defensa)
+        self.habilidad_especial = "Corte Mortal"
+
+    def atacar(self, objetivo):
+        damage = self.ataque - objetivo.defensa
+        if damage > 0:
+            objetivo.vida -= damage
+            print(f"{self.nombre} ataca a {objetivo.nombre} y causa {damage} puntos de daño.")
+            self.usar_habilidad_especial(objetivo)
+        else:
+            print(f"{self.nombre} ataca a {objetivo.nombre} pero no causa ningún daño.")
+
+    def usar_habilidad_especial(self, objetivo):
+        damage = self.ataque * 2 - objetivo.defensa
+        if damage > 0:
+            objetivo.vida -= damage
+            print(f"{self.nombre} usa {self.habilidad_especial} contra {objetivo.nombre} y causa {damage} puntos de daño.")
+        else:
+            print(f"{self.nombre} usa {self.habilidad_especial} contra {objetivo.nombre} pero no causa ningún daño.")
+
+
+# Función para simular un combate entre dos personajes
+def simular_combate(personaje1, personaje2):
+    print(f"--- {personaje1.nombre} VS {personaje2.nombre} ---")
+    personaje1.atacar(personaje2)
+    personaje2.atacar(personaje1)
+    print(f"Estado final de {personaje1.nombre}:")
+    personaje1.mostrar_estado()
+    print(f"Estado final de {personaje2.nombre}:")
+    personaje2.mostrar_estado()
+    print()
+
+
+# Ejemplo de uso
+guerrero1 = Guerrero("Conan", 150, 30, 15)
+guerrero2 = Guerrero("Valeria", 140, 35, 10)
+
+simular_combate(guerrero1, guerrero2)
